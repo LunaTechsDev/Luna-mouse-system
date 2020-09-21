@@ -62,14 +62,6 @@
       }
     },
     {
-      "type": "MethodLength",
-      "props": {
-        "severity": "ERROR",
-        "max": 50,
-        "ignoreEmptyLines": true
-      }
-    },
-    {
       "type": "UnnecessaryConstructor",
       "props": {
         "severity": "ERROR"
