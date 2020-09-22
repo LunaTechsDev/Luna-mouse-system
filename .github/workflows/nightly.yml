@@ -7,21 +7,19 @@ on:
     
 jobs:
   build:
+    name: Build from publish.hxml using LunaWizard
     runs-on: ubuntu-latest
     steps:
-      - name: Build from publish.hxml using LunaWizard
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
-      - uses: lix-pm/setup-lix@1.0.0
         with:
           node-version: 12
+      - uses: lix-pm/setup-lix@1.0.0
       - run: lix download
       - run: npm ci
       - run: npm run build:publish
       - name: Archive nightly build
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-          name: dist-without-sourcemaps
-          path: |
-            dist
-            !dist/**/*.map
+          name: nightly
+          path: dist

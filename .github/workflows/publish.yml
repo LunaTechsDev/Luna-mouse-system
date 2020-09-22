@@ -6,9 +6,9 @@ on:
     
 jobs:
   build:
+    name: Build from publish.hxml using LunaWizard
     runs-on: ubuntu-latest
     steps:
-      - name: Build from publish.hxml using LunaWizard
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
       - uses: lix-pm/setup-lix@1.0.0
@@ -18,9 +18,7 @@ jobs:
       - run: npm ci
       - run: npm run build:publish
       - name: Archive production build
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
-          name: dist-without-sourcemaps
-          path: |
-            dist
-            !dist/**/*.map
+          name: production
+          path: dist
