@@ -6,7 +6,7 @@
   },
   "scripts": {
     "build": "lix compile.hxml",
-    "build:publish": "npx luna-wizard build publish.hxml",
+    "build:publish": "npx @lunatechs/luna-wizard build publish.hxml",
     "checkstyle": "npx haxelib run checkstyle -s ./src"
   },
   "dependencies": {
