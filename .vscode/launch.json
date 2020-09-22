@@ -7,13 +7,26 @@
     {
       "type": "nwjs",
       "request": "launch",
-      "name": "Debug Game",
+      "name": "Debug MZ",
       "runtimeExecutable": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RPG Maker MZ\\nwjs-win\\nw.exe",
       "runtimeArgs": [
         "--remote-debugging-port=9222"
       ],
       // "preLaunchTask": "lix: compile.hxml",
       "webRoot": "${workspaceRoot}/games/mz/",
+      "port": 9222,
+      // "sourceMaps": true
+    },
+        {
+      "type": "nwjs",
+      "request": "launch",
+      "name": "Debug MV",
+      "runtimeExecutable": "C:\\Program Files (x86)\\Steam\\steamapps\\common\\RPG Maker MZ\\nwjs-win\\nw.exe",
+      "runtimeArgs": [
+        "--remote-debugging-port=9222"
+      ],
+      // "preLaunchTask": "lix: compile.hxml",
+      "webRoot": "${workspaceRoot}/games/mv/",
       "port": 9222,
       // "sourceMaps": true
     }

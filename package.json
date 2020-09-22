@@ -4,6 +4,11 @@
   "devDependencies": {
     "@lunatechs/lunatea-napkin": "^1.1.0"
   },
+  "scripts": {
+    "build": "lix compile.hxml",
+    "build:publish": "npx luna-wizard build publish.hxml",
+    "checkstyle": "npx haxelib run checkstyle -s ./src"
+  },
   "dependencies": {
     "lix": "^15.9.1"
   }

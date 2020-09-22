@@ -1,0 +1,23 @@
+-lib LunaTea
+
+-cp src
+# JS Version 
+-D js-es=6
+
+--no-traces
+
+-dce full
+
+-D analyzer-optimize 
+
+--macro macros.MacroTools.includeJsLib("./src/Parameters.js")
+
+-main Main
+--each
+
+--next
+-js dist/Luna_MouseSystem.js
+
+--next
+-D compileMV
+-js dist/Luna_MouseSystem_MV.js

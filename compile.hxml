@@ -21,10 +21,15 @@
 # RM Version for Conditional Compilation
 # -D compileMV
 
+--macro macros.MacroTools.includeJsLib("./src/Parameters.js")
 # Note you can call an hxml file inside an hxml file for build purposes.
 # For Compiling Separate JavaScript Files
+-main Main
 --each
 
 --next
--js game/js/plugins/Luna_MouseSystem.js
--main Main
+-js games/mz/js/plugins/Luna_MouseSystem.js
+
+--next
+-D compileMV
+-js games/mv/js/plugins/Luna_MouseSystem.js
