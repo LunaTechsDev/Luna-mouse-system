@@ -11,6 +11,6 @@ jobs:
         with:
           node-version: 12
       - run: lix download
-      - run: npm ci
       - run: lix install haxelib:checkstyle
-      - run: npm checkstyle
+      - run: npm ci
+      - run: npm run checkstyle
