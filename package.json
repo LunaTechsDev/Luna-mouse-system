@@ -5,8 +5,8 @@
     "@lunatechs/lunatea-napkin": "^1.1.0"
   },
   "scripts": {
-    "build": "lix compile.hxml",
-    "build:publish": "npx @lunatechs/luna-wizard build publish.hxml",
+    "build": "lix publish.hxml",
+    "clean:dist": "npx napkin -path='./dist/'",
     "checkstyle": "npx haxelib run checkstyle -s ./src"
   },
   "dependencies": {
