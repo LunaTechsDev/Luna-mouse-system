@@ -1,0 +1,41 @@
+name: Build Plugin
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  checkstyle:
+    name: Run checkstyle on plugin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: lix-pm/setup-lix@1.0.0
+        with:
+          node-version: 12
+      - run: lix download
+      - run: npm ci
+      - run: lix install haxelib:checkstyle
+      - run: npm checkstyle
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build from publish.hxml using LunaWizard
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+      - uses: lix-pm/setup-lix@1.0.0
+        with:
+          node-version: 12
+      - run: lix download
+      - run: npm ci
+      - run: npm run build:publish
+      - name: Archive nightly build
+      - uses: actions/upload-artifact@v2
+        with:
+          name: dist-without-sourcemaps
+          path: |
+            dist
+            !dist/**/*.map
