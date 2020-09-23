@@ -30,7 +30,7 @@ class LunaStage {
     Stage.setPrPropFn('createMouseCursor', () -> {
       sf(Stage, {
         untyped {
-          var cursorBitmap = ImageManager.loadSystem('GameCursor');
+          var cursorBitmap = ImageManager.loadSystem(Main.params.cursorFilepath);
           self._cursor = new Sprite(cursorBitmap);
           self._cursor.anchor.set(0, 0);
           self._cursor.x = 200;
