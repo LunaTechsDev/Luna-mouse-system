@@ -3,9 +3,7 @@ package core;
 import rm.core.TouchInput;
 import core.Types.JsFn;
 import utils.Comment;
-import rm.core.Sprite;
 import rm.core.Stage;
-import rm.managers.ImageManager;
 import macros.FnMacros.self as sf;
 
 using utils.Fn;
@@ -30,11 +28,7 @@ class LunaStage {
     Stage.setPrPropFn('createMouseCursor', () -> {
       sf(Stage, {
         untyped {
-          var cursorBitmap = ImageManager.loadSystem(Main.params.cursorFilepath);
-          self._cursor = new Sprite(cursorBitmap);
-          self._cursor.anchor.set(0, 0);
-          self._cursor.x = 200;
-          self._cursor.y = 200;
+          self._cursor = CursorLoader.createCursor();
           self.addChild(self._cursor);
         }
       });
