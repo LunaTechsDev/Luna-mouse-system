@@ -13,6 +13,32 @@
  * @dir img/system
  * @default GameCursor.png
  * 
+ * @command changeCursor
+ * @text Change Cursor
+ * @desc Changes the current cursor
+ * 
+ * @arg cursorId
+ * @desc The cursor ID you want to change to.
+ * 
+ * @command hideCursor
+ * @text Hide Cursor
+ * @desc Hides the cursor from view.
+ * @type Bool
+ * @default true
+ * 
+ * @arg showDefault
+ * @desc Show the default MZ/MV mouse cursor after hiding your custom cursor?
+ * @type boolean
+ * @default true
+ * @on Show default cursor
+ * @off Hide default cursor
+ * 
+ * @command showCursor
+ * @text Show Cursor
+ * @desc Brings cursor back to view
+ * @type Bool
+ * @default true
+ * 
 @help
 
 A plugin that allows you to use custom mouse cursor images and to change them
