@@ -6,6 +6,13 @@
  * @author LunaTechs | inc0der
  * @url https://lunatechs.dev/plugins/luna-mouse-system/
  * 
+ * @param cursorFilepath
+ * @text Cursor Image
+ * @desc The image to use as the default cursor
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png
+ * 
 @help
 
 A plugin that allows you to use custom mouse cursor images and to change them
