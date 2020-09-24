@@ -22,29 +22,39 @@ class LunaStage {
         untyped {
           self._cursorListener = self._mouseMoveListener.bind(self);
           TouchInput.addMouseMoveListener(self._cursorListener);
-          self.createMouseCursor();
+          self.updateCursors();
           document.body.style.cursor = 'none';
         }
       });
     }
 
-    Stage.setPrPropFn('createMouseCursor', () -> {
+    Stage.setPrPropFn('createMouseCursor', (filename: String) -> {
       sf(Stage, {
         var cursors: Array<Dynamic> = Main.params.cursors;
+        untyped {
+          var bitmap = ImageManager.loadSystem(filename);
+          self._cursor = new CursorSprite(bitmap, {
+            name: filename,
+            url: bitmap.url
+          });
+          self.addChild(self._cursor);
+        }
+      });
+    });
+
+    Stage.setPrPropFn('updateCursors', () -> {
+      sf(Stage, {
+        var cursors: Array<Dynamic> = Main.params.cursors;
+        if (CursorLoader.hasActiveData()) {
+          untyped self.createMouseCursor(CursorLoader.activeData.name);
+        } else {
+          untyped self.createMouseCursor(Main.params.cursors[0].filename);
+        }
         for (cursor in cursors) {
           CursorLoader.addCursor({
             name: cursor.filename,
             url: 'img/system/${cursor.filename}.png',
           });
-        }
-        untyped {
-          var defaultCursor = Main.params.cursors[0];
-          var bitmap = ImageManager.loadSystem(defaultCursor.filename);
-          self._cursor = new CursorSprite(bitmap, {
-            name: defaultCursor.filename,
-            url: bitmap.url
-          });
-          self.addChild(self._cursor);
         }
       });
     });

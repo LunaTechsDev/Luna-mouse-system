@@ -7,6 +7,17 @@ import types.CursorData;
 class CursorLoader {
   private static var cursors: Map<String, CursorData> = new Map();
 
+  public static var activeData(default, set): CursorData;
+
+  public static function set_activeData(data: CursorData) {
+    getActiveCursor().cursorData = data;
+    return activeData = data;
+  }
+
+  public static function hasActiveData(): Bool {
+    return activeData != null;
+  }
+
   public static function removeCursor(data: CursorData) {
     if (cursors.exists(data.name)) {
       cursors.remove(data.name);
@@ -22,7 +33,7 @@ class CursorLoader {
   public static function changeCursor(name: String) {
     if (cursors.exists(name)) {
       var data = cursors.get(name);
-      getActiveCursor().cursorData = data;
+      activeData = data;
     }
   }
 
