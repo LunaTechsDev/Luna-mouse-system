@@ -4,7 +4,6 @@ import sprites.CursorSprite;
 import rm.core.TouchInput;
 import core.Types.JsFn;
 import utils.Comment;
-import types.CursorData;
 import rm.core.Stage;
 import macros.FnMacros.self as sf;
 
