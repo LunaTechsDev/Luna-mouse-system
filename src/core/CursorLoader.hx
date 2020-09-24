@@ -1,28 +1,32 @@
 package core;
 
-import rm.core.Bitmap;
+import haxe.ds.Map;
 import sprites.CursorSprite;
-import rm.managers.ImageManager;
+import types.CursorData;
 
 class CursorLoader {
-  private var _cache: Array<CursorSprite> = [];
+  private static var cursors: Map<String, CursorData> = new Map();
 
-  public static function createCursor(?bitmap: Bitmap) {
-    if (bitmap == null) {
-      bitmap = ImageManager.loadSystem(Main.params.cursorFilepath);
+  public static function removeCursor(data: CursorData) {
+    if (!cursors.exists(data.name)) {
+      cursors.remove(data.name);
     }
-    var sprite = new CursorSprite(bitmap);
-    sprite.anchor.set(0, 0);
-    return sprite;
   }
 
-  public static function loadCursor(?swap: Bool, onLoad: Dynamic->CursorSprite) {
-
+  public static function addCursor(data: CursorData) {
+    if (!cursors.exists(data.name)) {
+      cursors.set(data.name, data);
+    }
   }
 
-  public static function swapCursor(cursorId) {}
+  public static function changeCursor(name: String) {
+    if (cursors.exists(name)) {
+      var data = cursors.get(name);
+      getActiveCursor().cursorData = data;
+    }
+  }
 
-  public static function activeCursor(): CursorSprite {
+  public static function getActiveCursor(): CursorSprite {
     return untyped Amaryllis.currentScene()._cursor;
   }
 }
