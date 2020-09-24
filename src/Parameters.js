@@ -6,19 +6,22 @@
  * @author LunaTechs | inc0der
  * @url https://lunatechs.dev/plugins/luna-mouse-system/
  * 
- * @param cursorFilepath
- * @text Cursor Image
- * @desc The image to use as the default cursor
- * @type file
- * @dir img/system
- * @default GameCursor.png
+ * @param cursors
+ * @test Cursors
+ * @desc A list of default cursors
+ * @type struct<CursorData>[]
+ * @default []
  * 
  * @command changeCursor
  * @text Change Cursor
  * @desc Changes the current cursor
  * 
- * @arg cursorId
- * @desc The cursor ID you want to change to.
+ * @arg filename
+ * @text Cursor Filename
+ * @desc The filename of the cursor you want to change to.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png
  * 
  * @command hideCursor
  * @text Hide Cursor
@@ -62,4 +65,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
  * 
+ */
+
+/*~struct~CursorData:
+ * @param filename
+ * @text Cursor Image
+ * @desc The image to use as the default cursor
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
  */
