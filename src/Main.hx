@@ -1,4 +1,3 @@
-import rm.managers.ImageManager;
 import core.CursorLoader;
 import sprites.CursorSprite;
 import core.Amaryllis;
@@ -44,8 +43,7 @@ class Main {
     });
 
     PluginManager.registerCommand(pluginName, 'changeCursor', (args: Dynamic) -> {
-      var bitmap = ImageManager.loadSystem(args.filename);
-      untyped Amaryllis.currentScene()._cursor.bitmap = bitmap;
+      CursorLoader.changeCursor(args.filename);
     });
     #end
   }
