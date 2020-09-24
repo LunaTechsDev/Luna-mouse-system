@@ -8,7 +8,7 @@ class CursorLoader {
   private static var cursors: Map<String, CursorData> = new Map();
 
   public static function removeCursor(data: CursorData) {
-    if (!cursors.exists(data.name)) {
+    if (cursors.exists(data.name)) {
       cursors.remove(data.name);
     }
   }
