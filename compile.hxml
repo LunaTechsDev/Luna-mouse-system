@@ -13,13 +13,10 @@
 -D analyzer-optimize 
 
 # Haxe Source Map
---debug
+# --debug
 # --no-inline
 # --no-opt
 # -D keep_inline_positions
-
-# RM Version for Conditional Compilation
-# -D compileMV
 
 --macro macros.MacroTools.includeJsLib("./src/Parameters.js")
 # Note you can call an hxml file inside an hxml file for build purposes.
@@ -28,8 +25,9 @@
 --each
 
 --next
--js games/mz/js/plugins/Luna_MouseSystem.js
-
---next
 -D compileMV
 -js games/mv/js/plugins/Luna_MouseSystem.js
+
+--next
+-D !compileMV
+-js games/mz/js/plugins/Luna_MouseSystem.js
