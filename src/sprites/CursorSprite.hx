@@ -2,10 +2,12 @@ package sprites;
 
 import rm.core.Sprite;
 import rm.managers.ImageManager;
+import core.CursorLoader;
 import types.CursorData;
 
 class CursorSprite extends Sprite {
   public var cursorData(default, set): CursorData;
+  public var hover: Bool;
 
   public function new(bitmap, ?cursorData: CursorData) {
     super(bitmap);
@@ -15,6 +17,19 @@ class CursorSprite extends Sprite {
     this.cursorData = {
       name: Utils.parseFilename(bitmap.url, false),
       url: bitmap.url,
+      hoverName: ''
+    }
+  }
+
+  public override function update() {
+    super.update();
+    if (hover) {
+      var hoverData = CursorLoader.getCursorData(cursorData.hoverName);
+      if (hoverData != null && bitmap.url != hoverData.url) {
+        bitmap = ImageManager.loadSystem(hoverData.name);
+      }
+    } else if (bitmap.url != cursorData.url) {
+      bitmap = ImageManager.loadSystem(cursorData.name);
     }
   }
 

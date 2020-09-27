@@ -12,6 +12,12 @@
  * @type struct<CursorData>[]
  * @default []
  * 
+ * @param hoverEvents
+ * @test Hover Events
+ * @desc A list of events and their default cursors
+ * @type struct<EventCursorData>[]
+ * @default []
+ * 
  * @command changeCursor
  * @text Change Cursor
  * @desc Changes the current cursor
@@ -71,6 +77,21 @@ SOFTWARE
  * @param filename
  * @text Cursor Image
  * @desc The image to use as the default cursor
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ */
+
+/*~struct~EventCursorData:
+ * @param eventName
+ * @text Event Name
+ * @desc The event name this cursor data applies to
+ * @type text
+ * @default
+ * 
+ * @param filename
+ * @text Hover Image Filename
+ * @desc The image to use as the hover image
  * @type file
  * @dir img/system
  * @default GameCursor.png 

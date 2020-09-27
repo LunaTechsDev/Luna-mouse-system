@@ -26,6 +26,18 @@ class CursorLoader {
     }
   }
 
+  /**
+   * Retrieve CursorData by name, if none exist it will return the active CursorData
+   * @param name The name the CursorData is associated with
+   * @return CursorData
+   */
+  public static function getCursorData(name: String): CursorData {
+    if (cursors.exists(name)) {
+      return cursors.get(name);
+    }
+    return activeData;
+  }
+
   public static function changeCursor(name: String) {
     if (cursors.exists(name)) {
       var data = cursors.get(name);
@@ -33,6 +45,13 @@ class CursorLoader {
       getActiveCursor().cursorData = activeData;
       untyped GameSystem.activeCursor = activeData;
     }
+  }
+
+  public static function changeHoverData(hoverName: String) {
+    if (activeData.hoverName != null) {
+      activeData.hoverName = hoverName;
+    }
+    getActiveCursor().cursorData.hoverName = hoverName;
   }
 
   public static function getActiveCursor(): CursorSprite {
