@@ -1,6 +1,7 @@
 package core;
 
 import js.html.MouseEvent;
+import rm.managers.ImageManager;
 import rm.managers.DataManager;
 import sprites.CursorSprite;
 import rm.core.TouchInput;
@@ -23,12 +24,15 @@ class Stage extends RmStage {
 
   public function createMouseCursor(filename: String) {
     var cursors: Array<Dynamic> = Main.params.cursors;
+    var bitmap = ImageManager.loadSystem(filename);
     untyped {
-      var bitmap = ImageManager.loadSystem(filename);
-      this._cursor = new CursorSprite(bitmap, {
+      var data = {
         name: filename,
-        url: bitmap.url
-      });
+        url: bitmap.url,
+        hoverName: ''
+      }
+      CursorLoader.activeData = data;
+      untyped this._cursor = new CursorSprite(bitmap, data);
       this.addChild(this._cursor);
     }
   }
@@ -51,6 +55,7 @@ class Stage extends RmStage {
       CursorLoader.addCursor({
         name: cursor.filename,
         url: 'img/system/${cursor.filename}.png',
+        hoverName: ''
       });
     }
   }
