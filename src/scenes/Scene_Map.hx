@@ -32,11 +32,22 @@ class Scene_Map extends RmScene_Map {
     }
   }
 
+  public function evaulateNamebox(event: Game_Event) {
+    var data: Event = DataMap.events[event.eventId()];
+    if (data.name != null) {
+      var cursorData = Main.params.hoverEvents.find(e -> e.eventName == data.name);
+      if (cursorData != null) {
+        CursorLoader.changeHoverData(cursorData.filename);
+      }
+    }
+  }
+
   public override function updateMain() {
     untyped _Scene_Map_updateMain.call(this);
     var eventTouched = eventTouchedByMouse();
     if (eventTouched != null) {
       untyped this._cursor.hover = true;
+      evaulateNamebox(eventTouched);
       evaulateNotebox(eventTouched);
     } else {
       untyped this._cursor.hover = false;
