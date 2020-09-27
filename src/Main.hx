@@ -3,6 +3,7 @@ import core.CursorLoader;
 import sprites.CursorSprite;
 import core.Amaryllis;
 import rm.Globals;
+import scenes.Scene_Map;
 import scenes.Scene_Base;
 import core.Game_System;
 import core.TouchInput;
@@ -14,6 +15,7 @@ import rm.types.RM.PluginSettings;
 import rm.core.TouchInput as RmTouchInput;
 import rm.core.Stage as RmStage;
 import rm.scenes.Scene_Base as RmScene_Base;
+import rm.scenes.Scene_Map as RmScene_Map;
 
 using StringTools;
 using Lambda;
@@ -30,6 +32,7 @@ class Main {
     FnMacros.jsPatch(true, RmStage, Stage);
     FnMacros.jsPatch(false, RmGame_System, Game_System);
     FnMacros.jsPatch(true, RmScene_Base, Scene_Base);
+    FnMacros.jsPatch(true, RmScene_Map, Scene_Map);
     registerPluginCommands();
   }
 
