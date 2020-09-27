@@ -3,10 +3,10 @@ import core.CursorLoader;
 import sprites.CursorSprite;
 import core.Amaryllis;
 import rm.Globals;
-import scenes.LunaSceneBase;
+import scenes.Scene_Base;
 import core.Game_System;
-import core.LunaTouchInput;
-import core.LunaStage;
+import core.TouchInput;
+import core.Stage;
 import utils.Parse;
 import rm.objects.Game_System as RmGame_System;
 import rm.managers.PluginManager;
@@ -26,10 +26,10 @@ class Main {
     var rawParams = Globals.Plugins.find((p: PluginSettings) -> p.description.contains('<Luna_MouseSystem>')).parameters;
     params = Parse.parseParameters(cast rawParams);
     utils.Comment.title('DataManager');
-    FnMacros.jsPatch(false, RmTouchInput, LunaTouchInput);
-    FnMacros.jsPatch(true, RmStage, LunaStage);
+    FnMacros.jsPatch(false, RmTouchInput, TouchInput);
+    FnMacros.jsPatch(true, RmStage, Stage);
     FnMacros.jsPatch(false, RmGame_System, Game_System);
-    FnMacros.jsPatch(true, RmScene_Base, LunaSceneBase);
+    FnMacros.jsPatch(true, RmScene_Base, Scene_Base);
     registerPluginCommands();
   }
 
