@@ -1,9 +1,9 @@
 package scenes;
 
 import rm.core.TouchInput;
-import rm.scenes.Scene_Base;
+import rm.scenes.Scene_Base as RmScene_Base;
 
-class LunaSceneBase extends Scene_Base {
+class Scene_Base extends RmScene_Base {
   public override function initialize() {
     untyped {
       _Scene_Base_initialize.call(this);

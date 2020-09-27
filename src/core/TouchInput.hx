@@ -1,11 +1,11 @@
 package core;
 
 import js.html.MouseEvent;
-import rm.core.TouchInput;
+import rm.core.TouchInput as RmTouchInput;
 
 using Lambda;
 
-class LunaTouchInput extends TouchInput {
+class TouchInput extends RmTouchInput {
   private var mouseX: Float;
   private var mouseY: Float;
   private var _mouseMoveListeners: Array<Dynamic>;

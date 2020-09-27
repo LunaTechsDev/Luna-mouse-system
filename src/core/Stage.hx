@@ -4,12 +4,12 @@ import js.html.MouseEvent;
 import rm.managers.DataManager;
 import sprites.CursorSprite;
 import rm.core.TouchInput;
-import rm.core.Stage;
+import rm.core.Stage as RmStage;
 import rm.Globals.GameSystem;
 
 using Lambda;
 
-class LunaStage extends Stage {
+class Stage extends RmStage {
   public var _cursorListener: Any;
   public var _cursor: sprites.CursorSprite;
 
