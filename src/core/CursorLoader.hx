@@ -3,16 +3,12 @@ package core;
 import haxe.ds.Map;
 import sprites.CursorSprite;
 import types.CursorData;
+import rm.Globals.GameSystem;
 
 class CursorLoader {
   private static var cursors: Map<String, CursorData> = new Map();
 
-  public static var activeData(default, set): CursorData;
-
-  public static function set_activeData(data: CursorData) {
-    getActiveCursor().cursorData = data;
-    return activeData = data;
-  }
+  public static var activeData: CursorData;
 
   public static function hasActiveData(): Bool {
     return activeData != null;
@@ -34,6 +30,8 @@ class CursorLoader {
     if (cursors.exists(name)) {
       var data = cursors.get(name);
       activeData = data;
+      getActiveCursor().cursorData = activeData;
+      untyped GameSystem.activeCursor = activeData;
     }
   }
 

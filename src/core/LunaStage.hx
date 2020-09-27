@@ -1,10 +1,12 @@
 package core;
 
+import rm.managers.DataManager;
 import sprites.CursorSprite;
 import rm.core.TouchInput;
 import core.Types.JsFn;
 import utils.Comment;
 import rm.core.Stage;
+import rm.Globals.GameSystem;
 import macros.FnMacros.self as sf;
 
 using utils.Fn;
@@ -44,6 +46,9 @@ class LunaStage {
     Stage.setPrPropFn('updateCursors', () -> {
       sf(Stage, {
         var cursors: Array<Dynamic> = Main.params.cursors;
+        if (DataManager.isDatabaseLoaded() && CursorLoader.activeData == null && untyped GameSystem.activeCursor != null) {
+          CursorLoader.activeData = untyped GameSystem.activeCursor;
+        }
         if (CursorLoader.hasActiveData()) {
           untyped self.createMouseCursor(CursorLoader.activeData.name);
         } else {

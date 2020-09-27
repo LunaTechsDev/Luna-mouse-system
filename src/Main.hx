@@ -1,11 +1,14 @@
+import macros.FnMacros;
 import core.CursorLoader;
 import sprites.CursorSprite;
 import core.Amaryllis;
 import rm.Globals;
 import scenes.LunaSceneBase;
+import core.Game_System;
 import core.LunaTouchInput;
 import core.LunaStage;
 import utils.Parse;
+import rm.objects.Game_System as RmGame_System;
 import rm.managers.PluginManager;
 import rm.types.RM.PluginSettings;
 
@@ -23,6 +26,8 @@ class Main {
     LunaStage.patch();
     LunaSceneBase.patch();
     registerPluginCommands();
+    utils.Comment.title('DataManager');
+    FnMacros.jsPatch(false, RmGame_System, Game_System);
   }
 
   public static function registerPluginCommands () {
