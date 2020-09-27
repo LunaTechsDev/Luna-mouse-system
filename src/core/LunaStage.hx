@@ -1,14 +1,16 @@
 package core;
 
+import rm.managers.DataManager;
+import sprites.CursorSprite;
 import rm.core.TouchInput;
 import core.Types.JsFn;
 import utils.Comment;
-import rm.core.Sprite;
 import rm.core.Stage;
-import rm.managers.ImageManager;
+import rm.Globals.GameSystem;
 import macros.FnMacros.self as sf;
 
 using utils.Fn;
+using Lambda;
 
 class LunaStage {
   public static inline function patch() {
@@ -21,21 +23,42 @@ class LunaStage {
         untyped {
           self._cursorListener = self._mouseMoveListener.bind(self);
           TouchInput.addMouseMoveListener(self._cursorListener);
-          self.createMouseCursor();
+          self.updateCursors();
           document.body.style.cursor = 'none';
         }
       });
     }
 
-    Stage.setPrPropFn('createMouseCursor', () -> {
+    Stage.setPrPropFn('createMouseCursor', (filename: String) -> {
       sf(Stage, {
+        var cursors: Array<Dynamic> = Main.params.cursors;
         untyped {
-          var cursorBitmap = ImageManager.loadSystem(Main.params.cursorFilepath);
-          self._cursor = new Sprite(cursorBitmap);
-          self._cursor.anchor.set(0, 0);
-          self._cursor.x = 200;
-          self._cursor.y = 200;
+          var bitmap = ImageManager.loadSystem(filename);
+          self._cursor = new CursorSprite(bitmap, {
+            name: filename,
+            url: bitmap.url
+          });
           self.addChild(self._cursor);
+        }
+      });
+    });
+
+    Stage.setPrPropFn('updateCursors', () -> {
+      sf(Stage, {
+        var cursors: Array<Dynamic> = Main.params.cursors;
+        if (DataManager.isDatabaseLoaded() && CursorLoader.activeData == null && untyped GameSystem.activeCursor != null) {
+          CursorLoader.activeData = untyped GameSystem.activeCursor;
+        }
+        if (CursorLoader.hasActiveData()) {
+          untyped self.createMouseCursor(CursorLoader.activeData.name);
+        } else {
+          untyped self.createMouseCursor(Main.params.cursors[0].filename);
+        }
+        for (cursor in cursors) {
+          CursorLoader.addCursor({
+            name: cursor.filename,
+            url: 'img/system/${cursor.filename}.png',
+          });
         }
       });
     });

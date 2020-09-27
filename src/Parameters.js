@@ -6,12 +6,41 @@
  * @author LunaTechs | inc0der
  * @url https://lunatechs.dev/plugins/luna-mouse-system/
  * 
- * @param cursorFilepath
- * @text Cursor Image
- * @desc The image to use as the default cursor
+ * @param cursors
+ * @test Cursors
+ * @desc A list of default cursors
+ * @type struct<CursorData>[]
+ * @default []
+ * 
+ * @command changeCursor
+ * @text Change Cursor
+ * @desc Changes the current cursor
+ * 
+ * @arg filename
+ * @text Cursor Filename
+ * @desc The filename of the cursor you want to change to.
  * @type file
  * @dir img/system
  * @default GameCursor.png
+ * 
+ * @command hideCursor
+ * @text Hide Cursor
+ * @desc Hides the cursor from view.
+ * @type Bool
+ * @default true
+ * 
+ * @arg showDefault
+ * @desc Show the default MZ/MV mouse cursor after hiding your custom cursor?
+ * @type boolean
+ * @default true
+ * @on Show default cursor
+ * @off Hide default cursor
+ * 
+ * @command showCursor
+ * @text Show Cursor
+ * @desc Brings cursor back to view
+ * @type Bool
+ * @default true
  * 
 @help
 
@@ -36,4 +65,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
  * 
+ */
+
+/*~struct~CursorData:
+ * @param filename
+ * @text Cursor Image
+ * @desc The image to use as the default cursor
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
  */
