@@ -22,18 +22,22 @@ class Scene_Map extends RmScene_Map {
     return events.find(event -> isEventTouched(event));
   }
 
+  public function evaulateNotebox(event: Game_Event) {
+    var data: Event = DataMap.events[event.eventId()];
+    if (data.note != null) {
+      var cursorName = data.note.split(':')[1];
+      if (cursorName != null) {
+        CursorLoader.changeHoverData(cursorName.trim());
+      }
+    }
+  }
+
   public override function updateMain() {
     untyped _Scene_Map_updateMain.call(this);
     var eventTouched = eventTouchedByMouse();
     if (eventTouched != null) {
-      var eventData: Event = DataMap.events[eventTouched.eventId()];
-      if (eventData.note != null) {
-        var cursorName = eventData.note.split(':')[1];
-        if (cursorName != null) {
-          CursorLoader.changeHoverData(cursorName.trim());
-          untyped this._cursor.hover = true;
-        }
-      }
+      untyped this._cursor.hover = true;
+      evaulateNotebox(eventTouched);
     } else {
       untyped this._cursor.hover = false;
     }
