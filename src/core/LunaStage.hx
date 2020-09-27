@@ -1,77 +1,64 @@
 package core;
 
+import js.html.MouseEvent;
 import rm.managers.DataManager;
 import sprites.CursorSprite;
 import rm.core.TouchInput;
-import core.Types.JsFn;
-import utils.Comment;
 import rm.core.Stage;
 import rm.Globals.GameSystem;
-import macros.FnMacros.self as sf;
 
-using utils.Fn;
 using Lambda;
 
-class LunaStage {
-  public static inline function patch() {
-    Comment.title('Stage');
+class LunaStage extends Stage {
+  public var _cursorListener: Any;
+  public var _cursor: sprites.CursorSprite;
 
-    var oldInitialize: JsFn = Stage.proto().initializeR;
-    Stage.proto().initializeD = () -> {
-      sf(Stage, {
-        oldInitialize.call(self);
-        untyped {
-          self._cursorListener = self._mouseMoveListener.bind(self);
-          TouchInput.addMouseMoveListener(self._cursorListener);
-          self.updateCursors();
-          document.body.style.cursor = 'none';
-        }
+  public override function initialize() {
+    untyped _Stage_initialize.call(this);
+    this._cursorListener = this._mouseMoveListener;
+    untyped TouchInput.addMouseMoveListener(this._cursorListener);
+    this.updateCursors();
+    untyped document.body.style.cursor = 'none';
+  }
+
+  public function createMouseCursor(filename: String) {
+    var cursors: Array<Dynamic> = Main.params.cursors;
+    untyped {
+      var bitmap = ImageManager.loadSystem(filename);
+      this._cursor = new CursorSprite(bitmap, {
+        name: filename,
+        url: bitmap.url
       });
+      this.addChild(this._cursor);
+    }
+  }
+
+  public function updateCursors(): Void {
+    var cursors: Array<Dynamic> = Main.params.cursors;
+    var needsUpdate: Bool = DataManager.isDatabaseLoaded() && CursorLoader.activeData == null;
+  
+    if (needsUpdate && untyped GameSystem.activeCursor != null) {
+      CursorLoader.activeData = untyped GameSystem.activeCursor;
     }
 
-    Stage.setPrPropFn('createMouseCursor', (filename: String) -> {
-      sf(Stage, {
-        var cursors: Array<Dynamic> = Main.params.cursors;
-        untyped {
-          var bitmap = ImageManager.loadSystem(filename);
-          self._cursor = new CursorSprite(bitmap, {
-            name: filename,
-            url: bitmap.url
-          });
-          self.addChild(self._cursor);
-        }
-      });
-    });
+    if (CursorLoader.hasActiveData()) {
+      untyped this.createMouseCursor(CursorLoader.activeData.name);
+    } else {
+      untyped this.createMouseCursor(Main.params.cursors[0].filename);
+    }
 
-    Stage.setPrPropFn('updateCursors', () -> {
-      sf(Stage, {
-        var cursors: Array<Dynamic> = Main.params.cursors;
-        if (DataManager.isDatabaseLoaded() && CursorLoader.activeData == null && untyped GameSystem.activeCursor != null) {
-          CursorLoader.activeData = untyped GameSystem.activeCursor;
-        }
-        if (CursorLoader.hasActiveData()) {
-          untyped self.createMouseCursor(CursorLoader.activeData.name);
-        } else {
-          untyped self.createMouseCursor(Main.params.cursors[0].filename);
-        }
-        for (cursor in cursors) {
-          CursorLoader.addCursor({
-            name: cursor.filename,
-            url: 'img/system/${cursor.filename}.png',
-          });
-        }
+    for (cursor in cursors) {
+      CursorLoader.addCursor({
+        name: cursor.filename,
+        url: 'img/system/${cursor.filename}.png',
       });
-    });
+    }
+  }
 
-    Stage.setPrProp('_mouseMoveListener', (event) -> {
-      sf(Stage, {
-        untyped {
-          if (self._cursor) {
-            self._cursor.x = event.clientX;
-            self._cursor.y = event.clientY;
-          }
-        }
-      });
-    });
+  private function _mouseMoveListener(event: MouseEvent): Void {
+    if (this._cursor != null) {
+      this._cursor.x = event.clientX;
+      this._cursor.y = event.clientY;
+    }
   }
 }

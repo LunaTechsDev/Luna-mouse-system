@@ -11,6 +11,7 @@ import utils.Parse;
 import rm.objects.Game_System as RmGame_System;
 import rm.managers.PluginManager;
 import rm.types.RM.PluginSettings;
+import rm.core.Stage;
 
 using StringTools;
 using Lambda;
@@ -23,10 +24,10 @@ class Main {
     var rawParams = Globals.Plugins.find((p: PluginSettings) -> p.description.contains('<Luna_MouseSystem>')).parameters;
     params = Parse.parseParameters(cast rawParams);
     LunaTouchInput.patch();
-    LunaStage.patch();
     LunaSceneBase.patch();
     registerPluginCommands();
     utils.Comment.title('DataManager');
+    FnMacros.jsPatch(true, Stage, LunaStage);
     FnMacros.jsPatch(false, RmGame_System, Game_System);
   }
 
