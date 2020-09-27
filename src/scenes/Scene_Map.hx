@@ -30,9 +30,12 @@ class Scene_Map extends RmScene_Map {
       if (eventData.note != null) {
         var cursorName = eventData.note.split(':')[1];
         if (cursorName != null) {
-          CursorLoader.changeCursor(cursorName.trim());
+          CursorLoader.changeHoverData(cursorName.trim());
+          untyped this._cursor.hover = true;
         }
       }
+    } else {
+      untyped this._cursor.hover = false;
     }
   }
 }
