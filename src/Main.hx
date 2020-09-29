@@ -16,6 +16,7 @@ import rm.core.TouchInput as RmTouchInput;
 import rm.core.Stage as RmStage;
 import rm.scenes.Scene_Base as RmScene_Base;
 import rm.scenes.Scene_Map as RmScene_Map;
+import rm.objects.Game_Interpreter as RmGGame_Interpreter;
 
 using StringTools;
 using Lambda;
@@ -33,6 +34,9 @@ class Main {
     FnMacros.jsPatch(false, RmGame_System, Game_System);
     FnMacros.jsPatch(true, RmScene_Base, Scene_Base);
     FnMacros.jsPatch(true, RmScene_Map, Scene_Map);
+    #if compileMV
+    FnMacros.jsPatch(true, RmGGame_Interpreter, PluginCommandsMV);
+    #end
     registerPluginCommands();
   }
 
