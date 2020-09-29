@@ -58,6 +58,14 @@ class Stage extends RmStage {
         hoverName: ''
       });
     }
+    for (cursor in Reflect.fields(Main.params.hoverEventCommands)) {
+      var filename = Reflect.getProperty(Main.params.hoverEventCommands, cursor);
+      CursorLoader.addCursor({
+        name: filename,
+        url: 'img/system/${filename}.png',
+        hoverName: filename
+      });
+    }
   }
 
   private function _mouseMoveListener(event: MouseEvent): Void {
