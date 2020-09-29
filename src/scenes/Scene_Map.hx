@@ -66,24 +66,31 @@ class Scene_Map extends RmScene_Map {
       }
       if (code == 128 || code == 127) {
         hasCommand.changeEquip = true;
+        break;
       }
       if (code == 126) {
         hasCommand.changeItem = true;
+        break;
       }
       if (code == 201) {
         hasCommand.transfer = true;
+        break;
       }
       if (code == 206) {
         hasCommand.vehicle = true;
+        break;
       }
       if (code == 301) {
         hasCommand.battle = true;
+        break;
       }
       if (code == 302) {
         hasCommand.shop = true;
+        break;
       }
       if (code == 352) {
         hasCommand.save = true;
+        break;
       }
     }
     
