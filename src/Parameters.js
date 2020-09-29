@@ -125,6 +125,13 @@ SOFTWARE
  * @dir img/system
  * @default GameCursor.png 
  * 
+ * @param changeGold
+ * @text Change Gold
+ * @desc The cursor image to use when hovering over an event with the change gold command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
  * @param transfer
  * @text Transfer
  * @desc The cursor image to use when hovering over an event with the transfer command.

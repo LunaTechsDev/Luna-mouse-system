@@ -68,6 +68,10 @@ class Scene_Map extends RmScene_Map {
         hasCommand.changeEquip = true;
         break;
       }
+      if (code == 125) {
+        hasCommand.changeGold = true;
+        break;
+      }
       if (code == 126) {
         hasCommand.changeItem = true;
         break;
