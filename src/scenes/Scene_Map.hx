@@ -42,6 +42,61 @@ class Scene_Map extends RmScene_Map {
     }
   }
 
+  /**
+   * @TODO Change to read command lists and pages upon map load instead of during update 
+   */
+  public function evaluateCommandList(event: Game_Event) {
+    var hasCommand = {
+      showText: false,
+      changeEquip: false,
+      changeItem: false,
+      changeGold: false,
+      transfer: false,
+      vehicle: false,
+      battle: false,
+      shop: false,
+      save: false
+    }
+    var page = event.page();
+
+    for (command in page.list) {
+      var code = command.code;
+      if (code == 101){
+        hasCommand.showText = true;
+      }
+      if (code == 128 || code == 127) {
+        hasCommand.changeEquip = true;
+      }
+      if (code == 126) {
+        hasCommand.changeItem = true;
+      }
+      if (code == 201) {
+        hasCommand.transfer = true;
+      }
+      if (code == 206) {
+        hasCommand.vehicle = true;
+      }
+      if (code == 301) {
+        hasCommand.battle = true;
+      }
+      if (code == 302) {
+        hasCommand.shop = true;
+      }
+      if (code == 352) {
+        hasCommand.save = true;
+      }
+    }
+    
+    for (command in Reflect.fields(hasCommand)) {
+      var value = Reflect.getProperty(hasCommand, command);
+      if (value && CursorLoader.activeData.name != command) {
+        var name = Reflect.getProperty(Main.params.hoverEventCommands, command);
+        CursorLoader.changeHoverData(name);
+        break;
+      }
+    }
+  }
+
   public override function updateMain() {
     untyped _Scene_Map_updateMain.call(this);
     var eventTouched = eventTouchedByMouse();
@@ -49,6 +104,7 @@ class Scene_Map extends RmScene_Map {
       untyped this._cursor.hover = true;
       evaulateNamebox(eventTouched);
       evaulateNotebox(eventTouched);
+      evaluateCommandList(eventTouched);
     } else {
       untyped this._cursor.hover = false;
     }
