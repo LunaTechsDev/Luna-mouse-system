@@ -18,6 +18,12 @@
  * @type struct<EventCursorData>[]
  * @default []
  * 
+ * @param hoverEventCommands
+ * @test Hover Event Commands
+ * @desc A list of command and the default cursors to use when an event has a command.
+ * @type struct<EventCommandData>
+ * @default 
+ * 
  * @command changeCursor
  * @text Change Cursor
  * @desc Changes the current cursor
@@ -92,6 +98,64 @@ SOFTWARE
  * @param filename
  * @text Hover Image Filename
  * @desc The image to use as the hover image
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ */
+
+/*~struct~EventCommandData:
+ * @param showText
+ * @text Show Text
+ * @desc The cursor image to use when hovering over an event with the show text command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param changeEquip
+ * @text Change Equip
+ * @desc The cursor image to use when hovering over an event with the change equip command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param changeItem
+ * @text Change Item
+ * @desc The cursor image to use when hovering over an event with the change item command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param transfer
+ * @text Transfer
+ * @desc The cursor image to use when hovering over an event with the transfer command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param vehicle
+ * @text On/Off Vehicle
+ * @desc The cursor image to use when hovering over an event with the on/off vehicle command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param battle
+ * @text Battle Porcessing
+ * @desc The cursor image to use when hovering over an event with the battle processing command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param shop
+ * @text Shop Processing
+ * @desc The cursor image to use when hovering over an event with the shop processing command.
+ * @type file
+ * @dir img/system
+ * @default GameCursor.png 
+ * 
+ * @param save
+ * @text Save
+ * @desc The cursor image to use when hovering over an event with the save command.
  * @type file
  * @dir img/system
  * @default GameCursor.png 
