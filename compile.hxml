@@ -18,7 +18,6 @@
 # --no-opt
 # -D keep_inline_positions
 
---macro macros.MacroTools.includeJsLib("./src/Parameters.js")
 # Note you can call an hxml file inside an hxml file for build purposes.
 # For Compiling Separate JavaScript Files
 -main Main
@@ -26,8 +25,11 @@
 
 --next
 -D compileMV
+--macro macros.MacroTools.includeJsLib("./src/ParametersMV.js")
 -js games/mv/js/plugins/Luna_MouseSystem.js
 
 --next
 -D !compileMV
+
+--macro macros.MacroTools.includeJsLib("./src/Parameters.js")
 -js games/mz/js/plugins/Luna_MouseSystem.js
