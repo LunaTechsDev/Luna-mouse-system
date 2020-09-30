@@ -55,11 +55,67 @@
  * @default true
  * 
 @help
+==== Summary  ====
+This plugin allows you to use custom cursor images with a highly customizable
+hover event system.
 
-A plugin that allows you to use custom mouse cursor images and to change them
-during specific actions.
+=== Hover Events ===
+Hover events are events that automatically change the cursors image to one
+which better represents what the event contains.
+
+The cursor will change with the following event commands and may be customized
+in the plugins parameters.
+
+  - Show Text
+  - Change Gold
+  - Change Item
+  - Change Equip
+  - Transfer
+  - Battle
+  - Shop
+  - Save
+
+==== Plugin Commands ====
+The plugin command information is for MV but still contains valuable
+information for MZ as well. 
+
+For MZ, the commands and what they do are explained in the new plugin command
+manager!
+
+Main Command: LunaMouse 
+  as shorter alternatives you may use lms or lmouse
+
+-----------------------
+LunaMouse show
+-----------------------
+show - Keyword for showing the cursor if not already visible
+
+-----------------------
+LunaMouse hide [showDefaultCursor]
+-----------------------
+show - Keyword for showing the cursor if not already visible
+
+showDefaultCursor - Set to true to bring back the default mouse cursor
+
+-----------------------
+LunaMouse change [cursorName]
+-----------------------
+show - Keyword for showing the cursor if not already visible
+
+cursorName - Set to the name of the cursor image file previously set in the 
+             parameters
+
+=== Contact us ===
+[Website] : https://lunatechs.dev
+[Twitter] : https://twitter.com/LunaTechsDev
+[Github]  : https://github.com/LunaTechsDev
+[Patreon] : https://patreon.com/LunaTechsDev
+
  
-MIT License
+=== License ===
+This plugin is released under MIT license.
+https://mit-license.org/
+
 Copyright (c) 2020 LunaTechsDev
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +132,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
- * 
  */
 
 /*~struct~CursorData:
