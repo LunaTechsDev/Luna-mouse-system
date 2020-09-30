@@ -1,14 +1,20 @@
 package core;
 
+import pixi.interaction.EventEmitter;
 import haxe.ds.Map;
 import sprites.CursorSprite;
 import types.CursorData;
-import rm.Globals.GameSystem;
 
 class CursorLoader {
   private static var cursors: Map<String, CursorData> = new Map();
 
   public static var activeData: CursorData;
+
+  private static var _emitter: EventEmitter = new EventEmitter();
+
+  public static function on(eventName: String, func: Any) {
+    _emitter.on(eventName, func);
+  }
 
   public static function hasActiveData(): Bool {
     return activeData != null;
@@ -42,8 +48,7 @@ class CursorLoader {
     if (cursors.exists(name)) {
       var data = cursors.get(name);
       activeData = data;
-      getActiveCursor().cursorData = activeData;
-      untyped GameSystem.activeCursor = activeData;
+      _emitter.emit('cursor-change', activeData);
     }
   }
 
@@ -51,7 +56,7 @@ class CursorLoader {
     if (activeData.hoverName != null) {
       activeData.hoverName = hoverName;
     }
-    getActiveCursor().cursorData.hoverName = hoverName;
+    _emitter.emit('cursor-hover-change', activeData.hoverName);
   }
 
   public static function getActiveCursor(): CursorSprite {
