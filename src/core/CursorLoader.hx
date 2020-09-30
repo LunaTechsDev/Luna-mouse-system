@@ -59,6 +59,11 @@ class CursorLoader {
     _emitter.emit('cursor-hover-change', activeData.hoverName);
   }
 
+  public static function resetHoverName() {
+    activeData.hoverName = '';
+    _emitter.emit('cursor-hover-change', activeData);
+  }
+
   public static function getActiveCursor(): CursorSprite {
     return untyped Amaryllis.currentScene()._cursor;
   }
