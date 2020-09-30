@@ -17,7 +17,7 @@ class Scene_Map extends RmScene_Map {
      */
     var mx = untyped TouchInput.mouseX;
     var my = untyped TouchInput.mouseY;
-    var rect = { x: event.screenX() - 24, width: 48, height: 48, y: event.screenY() - 24 };
+    var rect = { x: event.screenX() - 24, width: 48, height: 48, y: event.screenY() - 48 };
     return mx > rect.x && mx < rect.x + rect.width && my > rect.y && my < rect.y + rect.height;
   }
 
