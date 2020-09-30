@@ -1,6 +1,7 @@
 package scenes;
 
 import rm.core.TouchInput;
+import core.CursorLoader;
 import rm.scenes.Scene_Base as RmScene_Base;
 
 class Scene_Base extends RmScene_Base {
@@ -12,6 +13,16 @@ class Scene_Base extends RmScene_Base {
         this._cursor.y = TouchInput.mouseY;
       }
     }
+    CursorLoader.on('cursor-change', onCursorChange);
+    CursorLoader.on('cursor-hover-change', onCursorHoverChange);
+  }
+
+  public function onCursorChange(data) {
+    untyped this._cursor.cursorData = data;
+  }
+
+  public function onCursorHoverChange(hoverName) {
+    untyped this._cursor.cursorData.hoverName = hoverName;
   }
 
   /**
