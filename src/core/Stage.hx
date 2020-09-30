@@ -39,10 +39,11 @@ class Stage extends RmStage {
 
   public function updateCursors(): Void {
     var cursors: Array<Dynamic> = Main.params.cursors;
-    var needsUpdate: Bool = DataManager.isDatabaseLoaded() && CursorLoader.activeData == null;
-  
-    if (needsUpdate && untyped GameSystem.activeCursor != null) {
-      CursorLoader.activeData = untyped GameSystem.activeCursor;
+    
+    if (DataManager.isDatabaseLoaded() && untyped GameSystem.activeCursor != null) {
+      if (untyped GameSystem.activeCursor != CursorLoader.activeData) {
+        CursorLoader.activeData = untyped GameSystem.activeCursor;
+      }
     }
 
     if (CursorLoader.hasActiveData()) {

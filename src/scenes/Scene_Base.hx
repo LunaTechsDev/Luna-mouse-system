@@ -2,6 +2,7 @@ package scenes;
 
 import rm.core.TouchInput;
 import core.CursorLoader;
+import rm.Globals;
 import rm.scenes.Scene_Base as RmScene_Base;
 
 class Scene_Base extends RmScene_Base {
@@ -19,6 +20,7 @@ class Scene_Base extends RmScene_Base {
 
   public function onCursorChange(data) {
     untyped this._cursor.cursorData = data;
+    untyped Globals.GameSystem.activeCursor = data;
   }
 
   public function onCursorHoverChange(hoverName) {
