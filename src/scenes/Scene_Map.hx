@@ -12,9 +12,13 @@ using StringTools;
 
 class Scene_Map extends RmScene_Map {
   public function isEventTouched(event: Game_Event): Bool {
-    var mouseMapX = GameMap.canvasToMapX(untyped TouchInput.mouseX);
-    var mouseMapY = GameMap.canvasToMapY(untyped TouchInput.mouseY);
-    return event.x == mouseMapX && event.y == mouseMapY;
+    /**
+     * @TODO add offset option via notetags or parameters
+     */
+    var mx = untyped TouchInput.mouseX;
+    var my = untyped TouchInput.mouseY;
+    var rect = { x: event.screenX() - 24, width: 48, height: 48, y: event.screenY() - 24 };
+    return mx > rect.x && mx < rect.x + rect.width && my > rect.y && my < rect.y + rect.height;
   }
 
   public function eventTouchedByMouse(): Game_Event {
@@ -43,7 +47,7 @@ class Scene_Map extends RmScene_Map {
   }
 
   /**
-   * @TODO Change to read command lists and pages upon map load instead of during update 
+   * @TODO Change to read command lists and pages upon map load instead of during update
    */
   public function evaluateCommandList(event: Game_Event) {
     var hasCommand = {
@@ -61,7 +65,7 @@ class Scene_Map extends RmScene_Map {
 
     for (command in page.list) {
       var code = command.code;
-      if (code == 101){
+      if (code == 101) {
         hasCommand.showText = true;
       }
       if (code == 128 || code == 127) {
@@ -97,7 +101,7 @@ class Scene_Map extends RmScene_Map {
         break;
       }
     }
-    
+
     for (command in Reflect.fields(hasCommand)) {
       var value = Reflect.getProperty(hasCommand, command);
       if (value && CursorLoader.activeData.name != command) {
