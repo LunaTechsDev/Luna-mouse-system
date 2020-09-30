@@ -31,7 +31,7 @@ class Main {
     utils.Comment.title('DataManager');
     FnMacros.jsPatch(false, RmTouchInput, TouchInput);
     FnMacros.jsPatch(true, RmStage, Stage);
-    FnMacros.jsPatch(false, RmGame_System, Game_System);
+    FnMacros.jsPatch(true, RmGame_System, Game_System);
     FnMacros.jsPatch(true, RmScene_Base, Scene_Base);
     FnMacros.jsPatch(true, RmScene_Map, Scene_Map);
     #if compileMV
