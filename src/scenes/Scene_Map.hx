@@ -108,6 +108,8 @@ class Scene_Map extends RmScene_Map {
         var name = Reflect.getProperty(Main.params.hoverEventCommands, command);
         CursorLoader.changeHoverData(name);
         break;
+      } else {
+        CursorLoader.resetHoverName();
       }
     }
   }
