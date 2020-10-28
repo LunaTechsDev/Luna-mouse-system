@@ -16,8 +16,14 @@ class Scene_Map extends RmScene_Map {
      * @TODO add offset option via notetags or parameters
      */
     var mx = untyped TouchInput.mouseX;
+
     var my = untyped TouchInput.mouseY;
-    var rect = { x: event.screenX() - 24, width: 48, height: 48, y: event.screenY() - 48 };
+    var rect = {
+      x: event.screenX() - 24,
+      width: 48,
+      height: 48,
+      y: event.screenY() - 48
+    };
     return mx > rect.x && mx < rect.x + rect.width && my > rect.y && my < rect.y + rect.height;
   }
 
@@ -62,43 +68,45 @@ class Scene_Map extends RmScene_Map {
       save: false
     }
     var page = event.page();
-
-    for (command in page.list) {
-      var code = command.code;
-      if (code == 101) {
-        hasCommand.showText = true;
-      }
-      if (code == 128 || code == 127) {
-        hasCommand.changeEquip = true;
-        break;
-      }
-      if (code == 125) {
-        hasCommand.changeGold = true;
-        break;
-      }
-      if (code == 126) {
-        hasCommand.changeItem = true;
-        break;
-      }
-      if (code == 201) {
-        hasCommand.transfer = true;
-        break;
-      }
-      if (code == 206) {
-        hasCommand.vehicle = true;
-        break;
-      }
-      if (code == 301) {
-        hasCommand.battle = true;
-        break;
-      }
-      if (code == 302) {
-        hasCommand.shop = true;
-        break;
-      }
-      if (code == 352) {
-        hasCommand.save = true;
-        break;
+    // In some cases list is not defined this fixes that issue.
+    if (page != null && page.list != null) {
+      for (command in page.list) {
+        var code = command.code;
+        if (code == 101) {
+          hasCommand.showText = true;
+        }
+        if (code == 128 || code == 127) {
+          hasCommand.changeEquip = true;
+          break;
+        }
+        if (code == 125) {
+          hasCommand.changeGold = true;
+          break;
+        }
+        if (code == 126) {
+          hasCommand.changeItem = true;
+          break;
+        }
+        if (code == 201) {
+          hasCommand.transfer = true;
+          break;
+        }
+        if (code == 206) {
+          hasCommand.vehicle = true;
+          break;
+        }
+        if (code == 301) {
+          hasCommand.battle = true;
+          break;
+        }
+        if (code == 302) {
+          hasCommand.shop = true;
+          break;
+        }
+        if (code == 352) {
+          hasCommand.save = true;
+          break;
+        }
       }
     }
 
